@@ -7,13 +7,12 @@ package spamscorecalculator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.Action;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.text.DefaultEditorKit;
+
 
 /**
- *
+ * https://coderanch.com/t/537546/java/Counting-exact-matches-substring
+ * https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
  * @author tim
  */
 public class Main extends javax.swing.JFrame {
@@ -118,20 +117,25 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Clears all text from the text area.
+     * @param evt 
+     */
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         textArea.setText(null);
     }//GEN-LAST:event_clearButtonActionPerformed
 
     /**
-     * https://coderanch.com/t/537546/java/Counting-exact-matches-substring
-     * https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-     * 
-     * 
+     * When user presses the Verify button
+     * Regex will find all instances of the string it is passed
+     * and count them. The total number of instances is the final score.
+     * Once done a Message Dialog will pop-up to inform the user of the 
+     * final score.
      * @param evt 
      */
     private void VerifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerifyButtonActionPerformed
-        // TODO add your handling code here:
-        String hello = textArea.getText();
+
+        String email = textArea.getText();
         Pattern pattern = Pattern.compile("As seen on|" +
 "Buy|Meet singles|Extra income|Million dollars|Save big money|" +
 "Opportunity|Cash|No fees|Online degree|Work at home|Additional income|" +
@@ -139,18 +143,25 @@ public class Main extends javax.swing.JFrame {
 "Avoid bankruptcy|Miracle|Satisfaction|Risk free|Free hosting|" +
 "You have been selected|Weekend getaway|You're a Winner!|Offer|" +
 "Unlimited|No obligation|Trial|Guarantee|No purchase necessary");
-        Matcher matcher = pattern.matcher(hello);
+        Matcher matcher = pattern.matcher(email);
 
+        //Count all instances using matcher.find()
         int count = 0;
         while (matcher.find()) {
             count++;
         }
 
+        //Message Dialog pop-up
         JOptionPane.showMessageDialog(null, "The spam score for this massage is:" + count, null, JOptionPane.INFORMATION_MESSAGE);
 
-        System.out.println(count);
+        //System.out.println(count);// For debug only
     }//GEN-LAST:event_VerifyButtonActionPerformed
 
+    /**
+     * This will paste any text that is currently in the 
+     * system clip board into the main text area.
+     * @param evt 
+     */
     private void PasteEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasteEmailActionPerformed
         // TODO add your handling code here:
         textArea.paste();
