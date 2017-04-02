@@ -9,10 +9,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
-
 /**
+ * Spam calculator, this will look for words and phrases that are popular in
+ * spam email and give a score based on how many are found.
+ *
  * https://coderanch.com/t/537546/java/Counting-exact-matches-substring
  * https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+ *
  * @author tim
  */
 public class Main extends javax.swing.JFrame {
@@ -119,30 +122,30 @@ public class Main extends javax.swing.JFrame {
 
     /**
      * Clears all text from the text area.
-     * @param evt 
+     * @param evt
      */
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         textArea.setText(null);
     }//GEN-LAST:event_clearButtonActionPerformed
 
     /**
-     * When user presses the Verify button
-     * Regex will find all instances of the string it is passed
-     * and count them. The total number of instances is the final score.
-     * Once done a Message Dialog will pop-up to inform the user of the 
-     * final score.
-     * @param evt 
+     * When user presses the Verify button Regex will find all instances of the
+     * string it is passed and count them. The total number of instances is the
+     * final score. Once done a Message Dialog will pop-up to inform the user of
+     * the final score.
+     *
+     * @param evt
      */
     private void VerifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerifyButtonActionPerformed
 
         String email = textArea.getText();
-        Pattern pattern = Pattern.compile("As seen on|" +
-"Buy|Meet singles|Extra income|Million dollars|Save big money|" +
-"Opportunity|Cash|No fees|Online degree|Work at home|Additional income|" +
-"Eliminate debt|Lower interest rate|Pre-approved|Consolidate your debt|" +
-"Avoid bankruptcy|Miracle|Satisfaction|Risk free|Free hosting|" +
-"You have been selected|Weekend getaway|You're a Winner!|Offer|" +
-"Unlimited|No obligation|Trial|Guarantee|No purchase necessary");
+        Pattern pattern = Pattern.compile("As seen on|"
+                + "Buy|Meet singles|Extra income|Million dollars|Save big money|"
+                + "Opportunity|Cash|No fees|Online degree|Work at home|Additional income|"
+                + "Eliminate debt|Lower interest rate|Pre-approved|Consolidate your debt|"
+                + "Avoid bankruptcy|Miracle|Satisfaction|Risk free|Free hosting|"
+                + "You have been selected|Weekend getaway|You're a Winner!|Offer|"
+                + "Unlimited|No obligation|Trial|Guarantee|No purchase necessary");
         Matcher matcher = pattern.matcher(email);
 
         //Count all instances using matcher.find()
@@ -158,9 +161,10 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_VerifyButtonActionPerformed
 
     /**
-     * This will paste any text that is currently in the 
-     * system clip board into the main text area.
-     * @param evt 
+     * This will paste any text that is currently in the system clip board into
+     * the main text area.
+     *
+     * @param evt
      */
     private void PasteEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasteEmailActionPerformed
         // TODO add your handling code here:
