@@ -1,2 +1,2 @@
 # spam-score
-Something for school.
+Gives a spam rating for text files.
